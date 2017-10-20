@@ -1,0 +1,47 @@
+﻿@model Bageriet.ViewModels.ContentVm
+@{
+    ViewBag.Title = "Contact";
+    Layout = "~/Views/Shared/Backend/_Layout.cshtml";
+}
+
+<div id="page-content">
+    <div class="content-header">
+        <div class="header-section">
+            <h1>
+                <i class="fa fa fa-commenting-o"></i>Kontakt <br><small> Oplysninger fra kontakt </small>
+            </h1>
+        </div>
+    </div>
+
+    <div class="block block-alt-noborder" style="min-height: 300px">
+        <h3 class="sub-header">Kontakt <small>Indhold fra kontaktformularen</small></h3>
+
+        @foreach (var cont in Model.Contact)
+        {
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Date Created</th>
+                        <th>Email</th>
+                        <th>Subject</th>
+                        <th>Message</th>
+                        <th class="text-center">Delete</th>
+
+                    </tr>
+                </thead>
+                <tr>
+                    <td>@cont.Name</td>
+                    @*<td>@cont.DateCreated.DayOfWeek @cont.DateCreated.Day/@cont.DateCreated.Month</td>*@
+                    <td>@cont.DateCreated.ToString("D")</td>
+
+                    <td><a href="mailto:@cont.Email">@cont.Email</a></td>
+                    <td>@cont.Subject</td>
+                    <td>@cont.Message</td>
+                    <td class="text-center"><a class="btn btn-danger" href="/Admin/DeleteContact/@cont.Id"><i class="fa fa-trash"></i></a></td>
+                </tr>
+            </table>
+
+        }
+    </div>
+</div>

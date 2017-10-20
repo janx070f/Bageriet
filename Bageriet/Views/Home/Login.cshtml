@@ -1,0 +1,132 @@
+﻿
+
+@{
+    Layout = null;
+    ViewBag.Title = "Log in";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+ 
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    
+    <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/shop-homepage.css" rel="stylesheet" />
+</head>
+<body>
+
+<img src="~/Content/Images/header-bg-image.jpg" alt="Login Full Background" class="full-bg animation-pulseSlow">
+    
+    
+    
+<div id="login-container" class="animation-fadeIn">
+    <div class="login-title text-center">
+        <h1><i class="fa fa-unlock"></i> Bruger<br><small>Login eller <strong>Register</strong></small></h1>
+    </div>
+    <div class="text-center ">
+        <form action="/Account/Login" method="post" id="form-login" class="form-horizontal form-bordered form-control-borderless">
+            @Html.AntiForgeryToken()
+
+            <div class="form-group">
+                <div class="col-md-6 col-xs-12 text-center">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-envelope-open-o"></i></span>
+                        <input type="text" id="email" name="email" class="form-control input-md" placeholder="Email">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-6 col-xs-12 text-center">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                        <input type="password" id="password" name="password" class="form-control input-md" placeholder="Password">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group form-actions">
+                <div class="col-xs-8 text-right">
+                    <button type="submit" class="btn btn-sm btn-default"> Login </button>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-xs-12 text-center">
+                    @*<a href="javascript:void(0)" id="link-reminder-login"><small>Forgot password?</small></a> -*@
+                    <a href="/Account/Register" id="link-register-login"><h4>Create a new account</h4></a>
+                </div>
+            </div>
+        </form>
+      
+    </div>
+</div>
+    
+    
+    
+    
+    
+    
+
+@*<div id="login-container" class="animation-fadeIn">
+    <div class="login-title text-center">
+        <h1>Please Login</h1>
+    </div>
+    <div class="block push-bit">
+
+        <section id="loginForm">
+
+            @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "form-horizontal login-form form-bordered form-control-borderless", role = "form" }))
+            {
+
+                @Html.AntiForgeryToken()
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+                <div class="form-group">
+                    <div class="col-xs-12">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="icon-envelope"></i></span>
+                            <input type="text" id="Email" name="Email" class="form-control input-lg" placeholder="Email">
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="col-xs-12">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="icon-lock"></i></span>
+                            <input type="password" id="Password" name="Password" class="form-control input-lg" placeholder="Password">
+                        </div>
+                    </div>
+                </div>
+        
+
+                <div class="form-group form-actions">
+            
+                    <div class="col-xs-8 text-right">
+                        <button type="submit" class="btn btn-sm btn-default" value="Log in"><i class="fa fa-angle-right"></i> Login</button>
+                    </div>
+                </div>
+
+
+            }
+
+        </section>
+    </div>
+</div>*@
+
+@section Scripts {
+
+
+    @Scripts.Render("~/bundles/jqueryval")
+}
+</body>
+
+
+</html>

@@ -1,0 +1,56 @@
+﻿@{
+    ViewBag.Title = "RoleAddToUser";
+    Layout = "~/Views/Shared/Backend/_Layout.cshtml";
+}
+
+<div id="page-content">
+    <div class="content-header">
+        <div class="header-section">
+            <h1>
+                <i class="fa fa-user-o"></i>Tildel Roller<br><small>Her kan give roller til specifikke brugere</small>
+            </h1>
+        </div>
+    </div>
+    
+    <div class="block block-alt-noborder" style="min-height: 300px">
+        <h3 class="sub-header">Giv Rolle <small>til en specifik bruger</small></h3>
+
+        <form role="form" action="/Account/RoleAddToUsers" method="post" enctype="multipart/form-data" class="form-horizontal form-bordered">
+
+            <div class="form-group">
+                <label class="col-md-3 control-label" for="UserId">Brugernavn</label>
+                <div class="col-md-8">
+                    <select name="UserId" class="form-control">
+                        <option value="" hidden>Select User</option>
+                        @foreach (var item in ViewBag.Users)
+                        {
+                            <option value="@item.Value">@item.Text</option>
+                        }
+                    </select>
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                <label class="col-md-3 control-label" for="RoleName">Rollenavn</label>
+                <div class="col-md-8">
+                    <select name="RoleName" class="form-control">
+                        <option value="" hidden>Select Role</option>
+                        @foreach (var item in ViewBag.Roles)
+                        {
+                            <option value="@item.Value">@item.Text</option>
+                        }
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-11">
+                    <input type="submit" value="Save" class="btn btn-primary pull-right" />
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>

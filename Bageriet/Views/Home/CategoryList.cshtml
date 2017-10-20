@@ -1,0 +1,13 @@
+﻿@model IEnumerable <Bageriet.Models.Category>
+
+<p class="lead">Webshop Categories</p>
+<div class="list-group">
+    @foreach (var item in Model)
+    {
+        if (item.Products.Count > 0)
+        {
+            <a href="@Url.Action("Product", "Home", new {id = item.Id})" class="list-group-item">@item.Title</a>
+        }
+    }
+
+</div>

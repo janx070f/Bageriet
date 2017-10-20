@@ -1,0 +1,156 @@
+﻿
+@model Bageriet.Models.CompanyInfo  
+@{
+    ViewBag.Title = "Contact";
+}
+<link href="~/Content/shop-homepage.css" rel="stylesheet" />
+<link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+<div class="menu"></div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading text-center ">
+                <h3> <strong>Kontakt os</strong></h3>
+            </div>
+            <div class="panel-body">
+                @Html.AntiForgeryToken()
+                <form role="form" enctype="multipart/form-data" method="post" id="Contact" action="/Home/Contact">
+                    <div class="form-group">
+                        <label class="control-label" for="Name">Name:</label>
+                        <input type="text" class="form-control" required name="name" placeholder="Enter name">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="Email">Email:</label>
+                        <input type="Email" class="form-control" required name="email" placeholder="Enter email">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="Subject">Subject:</label>
+                        <input type="text" class="form-control" required name="subject" placeholder="Enter subject">
+                    </div>
+
+                    <div class="control-label form-group">
+
+                        <label for="message">Message:</label>
+                        <textarea class="form-control" rows="5" required name="message"></textarea>
+                    </div>
+
+                    <div class="col-lg-4 col-lg-push-9">
+                        <button type="submit" class="btn btn-primary">Send</button>
+
+                        <a class="btn btn-danger" href="/Home/Contact"><i class="fa fa-times" aria-hidden="true"></i> Back </a>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-md-6">
+
+        <h4>Adress:<strong>@Model.Street @Model.Number</strong></h4>
+        <h4> Zipcode:<strong>@Model.ZipCode @Model.City</strong></h4>
+        <h4> Contry: <strong>@Model.Country</strong></h4>
+        <h4>Phone:<strong> @Model.PhoneNumber</strong> </h4>
+        @*@Html.Partial("_Company")*@
+        
+        <div id="map"> </div>
+    </div>
+    
+</div>
+<div class="row">
+    
+
+    
+</div>
+
+
+
+
+
+@section Styles
+    {
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.0/css/bootstrapValidator.min.css" rel="stylesheet" />
+    <link href=" https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.9.1/sweetalert2.css" rel="stylesheet" />
+   
+}
+
+@section Scripts {
+    <script src="~/Scripts/specialform.js"></script>
+    <script type="text/javascript" src=" https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.4.5/js/bootstrapvalidator.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/main.js"></script>
+
+    @*TESTCODE*@
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.9/sweetalert2.min.js"></script>
+    <script>
+       
+
+            $("#Contact").on("submit",
+                function () {
+                    var $this = $(this);
+                    var values = $this.serialize();
+                    $.ajax({
+                        type: $this.attr("method"),
+                        url: $this.attr("action"),
+                        data: values,
+                        success: function () {
+
+                            swal({
+                                title: "Success?",
+                                text: "Du har nu sendt os en besked, vi vil svare dig snarest",
+                                type: "success"
+                               
+                            });
+
+                            $this.trigger("reset");
+
+                        },
+                        error: function () {
+                            swal({
+                                title: "Error?",
+                                text: "HOV.....noget gik galt- prøv igen",
+                                type: "error"
+                               
+                            });
+                        }
+                        //swal('Congratulations!', 'Your message has been successfully sent', 'success');
+
+                    });
+                    event.preventDefault();
+                });
+    </script>
+    <script>
+        function initMap() {
+            var map = new google.maps.Map(document.getElementById('map'),
+                {
+                    zoom: 12
+                });
+            var geocoder = new google.maps.Geocoder();
+            geocodeAddress(geocoder, map);
+        }
+
+        function geocodeAddress(geocoder, resultsMap) {
+            var address = "@Model.Street, @Model.Number, @Model.ZipCode @Model.City";
+
+            geocoder.geocode({ 'address': address },
+                function(results, status) {
+                    if (status === 'OK') {
+                        resultsMap.setCenter(results[0].geometry.location);
+
+                        // Indsæt marker ved lokationen
+                        var marker = new google.maps.Marker({
+                            map: resultsMap,
+                            position: results[0].geometry.location
+                        });
+                    } else {
+                        alert('Geocode was not successful for the following reason: ' + status);
+                    }
+                });
+        };
+
+    </script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjfTfyNumzFSC1FEnvfxQzeaRIrORObxc&callback=initMap">
+    </script>
+}

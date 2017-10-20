@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Microsoft.AspNet.Identity.EntityFramework.IdentityRole>
+@{
+    ViewBag.Title = "RoleList";
+    Layout = "~/Views/Shared/Backend/_Layout.cshtml";
+
+
+}
+
+
+<div id="page-content">
+    <div class="content-header">
+        <div class="header-section">
+            <h1>
+                <i class="fa fa-user-o"></i>Liste af Roller<br><small>Her er listen af rollerne </small>
+            </h1>
+        </div>
+    </div>
+
+    <div class="block block-alt-noborder" style="min-height: 300px">
+        <h3 class="sub-header">Liste af Roller <small>Flere kan tilføjes</small></h3>
+        <div>
+            <a href="/Account/CreateRole" class="btn btn-info New"><i class=" fa fa-pencil "></i> Tilføj Ny !</a>
+        </div>
+
+        <table class="table table-striped">
+
+            @foreach (var role in Model)
+            {
+                <tr>
+                    <td>@role.Name</td>
+                    <td class="text-right">
+                        <a onclick="if (confirm('Er du sikker på at du vil slette denne role???')) location.href='@Url.Action("RoleDelete", new { id = role.Id })'" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                        <a class="btn btn-info" href="#"><i class="fa fa-pencil-square-o"></i></a>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>

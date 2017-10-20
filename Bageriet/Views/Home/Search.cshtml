@@ -1,0 +1,41 @@
+﻿@using Microsoft.Ajax.Utilities
+@model Bageriet.ViewModels.SearchVM
+
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/Frontend/_Layout.cshtml";
+}
+
+
+<div class="row">
+    @if (!Model.Ingredients.Any() && !Model.Products.Any())
+    {
+        <h1 style="text-align: center; color: #a52a2a">No Result Found!!!</h1>
+    }
+    @if (Model.Ingredients.Any())
+    {
+        <div class="col-md-5 col-md-offset-1 Well">
+            <h2>Liste af Ingredients</h2>
+            @foreach (var ingredient in Model.Ingredients)
+            {
+                <p>
+                    <a href="/home/ingredient">@ingredient.Name</a>
+                </p>
+            }
+        </div>
+    }
+
+    @if (Model.Products.Any())
+    {
+        <div class="col-md-5 col-md-offset-1 Welll">
+            <h2>Liste af Products</h2>
+            @foreach (var prod in Model.Products)
+            {
+                <p>
+                    <a href="/home/products">@prod.Title</a>
+                </p>
+            }
+
+        </div>
+    }
+</div>

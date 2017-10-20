@@ -1,0 +1,76 @@
+﻿@model Bageriet.ViewModels.ProductVM
+@{
+    ViewBag.Title = "ProductCreate";
+    Layout = "~/Views/Shared/Backend/_Layout.cshtml";
+}
+
+@*<h2 class="label-primary">Opret nyt produkt</h2>*@
+<div id="page-content">
+    <div class="content-header">
+        <div class="header-section">
+            <h1>
+                <i class="fa fa-cogs"></i>Opret produkter <br><small>Her kan du oprette nye produkter </small>
+            </h1>
+        </div>
+    </div>
+
+<div class="block block-alt-noborder" style="min-height: 300px">
+    <h3 class="sub-header">Opret Produkter <small>Nye produkter </small></h3>
+    <form role="form" enctype="multipart/form-data" method="post" id="prodCreate" action="/Admin/ProductCreate">
+  
+        <div class="form-group">
+            <label class="control-label" for="Title">Titel</label>
+            <input type="text"  class="form-control" required name="Title" placeholder="Skriv Titel">
+        </div>
+
+        <div class="form-group">
+            <label class="control-label" for="ImageUrl">Billede</label>
+            <input type="file"  class="form-control" required name="file" placeholder="Tilføj Billede">
+        </div>
+
+        <div class="form-group">
+            <label class="control-label" for="Category">Kategori</label>
+            <select required name="CategoryId">
+                <option hidden value="">Vælg Kategori</option>
+                @foreach (var category in Model.Categories)
+                {
+                    <option value="@category.Id">@category.Title</option>
+                }
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label" for="Description">Beskrivelse</label>
+            <textarea class="form-control" required name="Description"> </textarea>
+        </div>
+        @*<div class="form-group">
+            <label class="control-label" for="Price">Pris </label>
+            <input type="text" required class="form-control" name="Price" placeholder="Skriv Pris">
+        </div>*@
+
+        @*<div class="form-group">
+            <label class="control-label" for="Amount">Antal</label>
+            <input type="number" required class="form-control" name="Amount" placeholder="Skriv Antal">
+        </div>*@
+        @*<div class="form-group">
+            <label class="control-label" for="OnSale">På Udsalg</label>
+            <input type="checkbox" name="OnSale">
+        </div>*@
+
+    
+ 
+        <button type="submit" class="btn btn-default">Godkend</button>
+     
+        <a class="btn btn-danger" href="/Admin/ProductList"><i class="fa fa-times" aria-hidden="true"></i> Back </a>
+    </form>
+</div>
+    </div>
+@section Styles
+{
+   <link href="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.0/css/bootstrapValidator.min.css" rel="stylesheet" />
+}
+
+@section Scripts {
+    <script type="text/javascript" src=" http://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.4.5/js/bootstrapvalidator.min.js"></script>
+<script type="text/javascript" src="~/Scripts/main.js"></script>
+}

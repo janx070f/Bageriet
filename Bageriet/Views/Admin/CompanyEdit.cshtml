@@ -1,0 +1,59 @@
+﻿
+@model Bageriet.Models.CompanyInfo  
+@{
+    ViewBag.Title = "CompanyEdit";
+    Layout = "~/Views/Shared/Backend/_Layout.cshtml";
+}
+
+<div id="page-content">
+    <div class="content-header">
+        <div class="header-section">
+            <h1>
+                <i class="fa fa-building-o"></i>Ændre Virksomhed´s adresse<br><small>Her opretter du din virksomhed </small>
+            </h1>
+        </div>
+    </div>
+
+<div class="block block-alt-noborder" style="min-height: 300px">
+    <h3 class="sub-header">Opret Adresse <small>Virksomhed</small></h3>
+
+    <form role="form" enctype="multipart/form-data" method="post" id="" action="/Admin/CompanyEdit">
+        <input type="hidden" name="Id" value="@Model.Id" />
+        <div class="form-group">
+            <label class="control-label" for="Name">Navn</label>
+            <input type="text" class="form-control" value="@Model.Name" required name="Name" placeholder="Skriv Firmanavn">
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="Street">Adresse</label>
+            <input type="text" class="form-control" value="@Model.Street" required name="Street" placeholder="Skriv Adresse">
+        </div>
+    <div class="form-group">
+            <label class="control-label" for="Number">Nummer</label>
+            <input type="number" class="form-control" value="@Model.Number" required name="Number" placeholder="Skriv nummer">
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="ZipCode">Postnummer</label>
+            <input type="number" class="form-control" value="@Model.ZipCode" required name="ZipCode" placeholder="Skriv postnummer">
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="City">By</label>
+            <input type="text" class="form-control" value="@Model.City" required name="City" placeholder="Skriv Bynavn">
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="Country">Land</label>
+            <input type="text" class="form-control" value="@Model.Country" required name="Country" placeholder="Skriv Land">
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="PhoneNumber">Telefonnummer</label>
+            <input type="text" class="form-control" value="@Model.PhoneNumber" required name="PhoneNumber" placeholder="Skriv Telefonnummer">
+        </div>
+
+
+
+        <button type="submit" class="btn btn-default">Godkend</button>
+
+        <a class="btn btn-danger" href="/Admin/CompanyList"><i class="fa fa-times"></i> Back </a>
+    </form>
+</div>
+    </div>
+

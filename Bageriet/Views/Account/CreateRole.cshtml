@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "CreateRole";
+    Layout = "~/Views/Shared/Backend/_Layout.cshtml";
+}
+
+<h1>CreateRole</h1>
+
+<form action="/Account/CreateRole"method="post">
+    <div class="form-group">
+        <label class="control-label" for="roleName">Rollenavn</label>
+        <input type="text" class="form-control" name="roleName" placeholder="Skriv Rollenavn">
+    </div>
+    <button type="submit" class="btn btn-default">Godkend</button>
+</form>
+
+@*<form action="/Account/CreateRole" method="post">
+    <div class="form-group">
+        <label class="control-label" for="roleName">Rollenavn</label>
+        <input type="text" class="form-control" name="roleName" placeholder="Skriv Rollenavn">
+    </div>
+    <button type="submit" class="btn btn-default">Godkend</button>
+</form>*@

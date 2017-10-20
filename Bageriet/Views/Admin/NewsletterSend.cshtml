@@ -1,0 +1,43 @@
+﻿@model Bageriet.ViewModels.NewsletterVM
+@{
+    ViewBag.Title = "NewsletterSend";
+    Layout = "~/Views/Shared/Backend/_Layout.cshtml";
+}
+
+<h1>NewsletterSend</h1>
+
+<form action="/Admin/NewsletterSend" method="post">
+    <div class="form-group">
+        <select name="Email" multiple class="form-control">
+            @foreach (var sub in Model.Subscribers.Where(x => x.IsSubscribed == true))
+            {
+                <option value="@sub.Email">@sub.Email</option>
+            }
+
+        </select>
+    </div>
+    <div class="label-primary"><h2>@Model.Newsletter.Title</h2></div>
+    <div class="form-group">
+        <label class="control-label" for="HtmlContent">HtmlContent</label>
+        <textarea class="form-control" id="summernote" required name="HtmlContent">
+        @Model.Newsletter.HtmlContent
+
+</textarea>
+    </div>
+    <button type="submit" class="btn btn-success"><i class="fa fa-send"> Send </i> </button>
+    <a class="btn btn-danger" href="/Admin/NewsletterList"><i class="fa fa-times" aria-hidden="true"></i> Back </a>
+</form>
+
+@section scripts{
+
+    <link href="~/Scripts/summernote/summernote.css" rel="stylesheet" />
+    <script src="~/Scripts/summernote/summernote.js"></script>
+    <script>
+        $('#summernote').summernote({
+            height: 300,                 // set editor height
+            minHeight: null,             // set minimum height of editor
+            maxHeight: null,             // set maximum height of editor
+            focus: true                  // set focus to editable area after initializing summernote
+        });
+    </script>
+}

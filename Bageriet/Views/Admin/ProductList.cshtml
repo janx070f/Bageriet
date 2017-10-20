@@ -1,0 +1,78 @@
+﻿@model IEnumerable<Bageriet.Models.Category>
+@{
+    ViewBag.Title = "ProductList";
+    Layout = "/Views/Shared/Backend/_Layout.cshtml";
+}
+<link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+
+<div id="page-content">
+    <div class="content-header">
+        <div class="header-section">
+            <h1>
+                <i class="fa fa-cogs"></i>Produkt Liste<br><small>Her er listen af produkter </small>
+            </h1>
+        </div>
+    </div>
+
+    <div class="block block-alt-noborder" style="min-height: 300px">
+        <h3 class="sub-header">Produktliste <small>Nye produkter kan tilføjes </small></h3>
+
+        <a href="/Admin/ProductCreate" class="btn btn-info New"><i class=" fa fa-plus"></i> Tilføj Ny </a>
+        <br />
+        @foreach (var cat in Model)
+        {
+            if (cat.Products.Any())
+            {
+                <h2 class="label-primary">@cat.Title</h2>
+                <br />
+                <hr />
+                <table class="table table-striped">
+
+                    <thead>
+                        <tr>
+                            <th>Billede</th>
+                            <th>Navn</th>
+                            <th>Beskrivelse</th>
+                        
+                            <th>Settings</th>
+                        </tr>
+                    </thead>
+
+
+                    @foreach (var prod in cat.Products)
+                    {
+
+                        <tbody>
+                            <tr>
+                                <td>
+                                    @if (prod.ImageUrl.Length > 0)
+                                    {
+                                        <img class="img-responsive" style="height: 100px; width: 100px;" src="~/Uploads/@prod.ImageUrl" alt="Product image" />
+                                    }
+                                    else
+                                    {
+                                        <img class="img-responsive" style="height: 100px; width: 100px;" src="~/Uploads/noImage.png" alt="No image" />
+                                    }
+                                </td>
+                                <td>@prod.Title</td>
+                                <td>@prod.Description</td>
+                            
+                            <td>
+                                <a class="btn btn-danger" href="/Admin/ProductDelete/@prod.Id"><i class="fa fa-trash"></i></a>
+                                 <a class="btn btn-success" href="/Admin/ProductDetail/@prod.Id"><i class="fa fa-adjust"></i></a>
+                                <a class="btn btn-info" href="/Admin/ProductEdit/@prod.Id">
+                                    
+                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                </a>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                      }              
+
+                </table>
+
+              }
+          }
+    </div>
+</div>

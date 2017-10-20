@@ -1,0 +1,72 @@
+﻿@model IEnumerable<Bageriet.Models.Blog>
+@{
+    ViewBag.Title = "BlogList";
+    Layout = "~/Views/Shared/Backend/_Layout.cshtml";
+}
+
+<div id="page-content">
+    <div class="content-header">
+        <div class="header-section">
+            <h1>
+                <i class="fa fa-newspaper-o"></i>Blog <br><small>Blog eller nyheder </small>
+            </h1>
+        </div>
+    </div>
+
+    <div class="block block-alt-noborder" style="min-height: 300px">
+        <h3 class="sub-header">Blog <small>BlogNews, mere kan tilføjes</small></h3>
+
+        <a href="/Admin/BlogCreate" class="btn btn-info New"><i class=" fa fa-plus"></i> Tilføj Ny </a>
+        <br />
+
+        <hr />
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Billede</th>
+                    <th>Titel</th>
+                    <th>Beskrivelse</th>
+                    <th>DateCreated</th>
+                    <th>Settings</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @if (item.ImageUrl.Length > 0)
+                            {
+                                <img class="img-responsive" style="height: 100px; width: 100px;" src="~/Uploads/@item.ImageUrl" alt="@item.Title" />
+                            }
+                            else
+                            {
+                                <img class="img-responsive" style="height: 100px; width: 100px;" src="~/Uploads/noImage.png" alt="No image" />
+                            }
+                        </td>
+                        <td>@item.Title</td>
+                        <td>
+                           <p>
+                                    @(item.Content.Length > 35 ? item.Content.Substring(0, 35) : item.Content)...
+                             
+                                </p>
+                           
+                            <a href="/Admin/BlogDetail/@item.Id" class="btn btn-sm btn-default" title="Read more">Read more</a>
+                        
+                        </td>
+                        <td>@item.DateCreated.ToString("D")</td>
+
+                        <td>
+                            <a class="btn btn-danger" href="@Url.Action("DeleteBlog", "Admin")/@item.Id"><i class="fa fa-trash"></i></a>
+
+                            <a class="btn btn-info" href="@Url.Action("BlogEdit","Admin")/@item.Id">
+                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                            </a>
+                        </td>
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

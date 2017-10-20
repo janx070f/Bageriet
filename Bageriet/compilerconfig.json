@@ -1,0 +1,10 @@
+﻿[
+  {
+    "outputFile": "Content/styles/css/layout.css",
+    "inputFile": "Content/styles/scss/layout.scss"
+  },
+  {
+    "outputFile": "Content/styles/scss/partials/_colors.css",
+    "inputFile": "Content/styles/scss/partials/_colors.scss"
+  }
+]

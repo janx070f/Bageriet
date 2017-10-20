@@ -1,0 +1,153 @@
+﻿
+@model IEnumerable<Bageriet.Models.Product>
+@{
+    ViewBag.Title = "Product";
+}
+<link href="~/Content/shop-homepage.css" rel="stylesheet" />
+<div class="menu"></div>
+
+
+<div class="container">
+   <div class="col-md-12 text-center">
+        <h1>Vores elskede bagværk</h1>
+        <h5>Lorem Ipsum har ikke alene overlevet fem århundreder, men har også vundet indpas i elektronisk typografi uden væsentlige ændringer.</h5>
+    </div>
+    <div class="row">
+           <div class="col-md-2 col-md-push-1">
+               
+                @foreach (var cat in Model)
+                {
+                    <h4><a href="@Url.Action("Product","Home")/@cat.Category.Id">@cat.Category.Title</a></h4>
+                }
+              
+
+           </div>
+    
+        
+         
+            <div class="col-md-11 col-md-push-2 newsImg">
+                @foreach (var item in Model)
+                {
+                    <div class="col-md-4 newsBox ">
+                        <div class="col-md-12">
+                            <img class="img-responsive" src="~/Uploads/@item.ImageUrl"/>
+                        </div>
+                        <div class="col-md-12">
+                            @if (item.BlogComment.Count == 0)
+                            {
+                                <p>Der er ingen kommentarer endnu! </p>
+                               
+                            }
+                            else
+                            {
+                                <p><i class="fa fa-comment-o"></i> <a href="#" title="">@item.BlogComment.Count Kommentar</a></p>
+
+                            }
+                       
+                        </div>
+                        <div class="col-md-12">
+                            <p>@item.Title</p>
+                        </div>
+                        <div class="col-md-12">
+                            <p>
+                              @item.Description
+                            </p>
+                        </div>
+                        <div class="col-md-12">
+                            <a href="/Home/ProductDetail/@item.Id" class="btn btn-default ">SE MERE</a>
+                        </div>
+                    </div>
+                }
+               
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+@*</div>
+        <div class="col-md-2">
+            <div class="list-group">
+                @foreach (var item in Model.Categories)
+                {
+                    if (item == Model.Categories[0])
+                    {
+                        <a href="@Url.Action("Product", "Home")/@item.Id" class="active list-group-item text-center"><b>@item.Title</b></a>
+                    }
+                    else
+                    {
+                        <a href="@Url.Action("Product", "Home")/@item.Id" class="list-group-item text-center"><b>@item.Title</b></a>
+                    }
+                }
+            </div>
+
+        </div>
+
+
+        <div class="col-md-8 col-md-push-1">
+            <div class="col-md-4 text-center">
+                @foreach (var prod in Model.Products)
+                {
+  
+                
+                <img src="~/Uploads/@prod.ImageUrl" alt="@prod.Title"/>
+                <span>
+                    <p>23 <i class="fa fa-comment-o"></i>
+                    </p></span>
+                <h4><b>@prod.Title</b>r</h4>
+                <p>@prod.Description</p>
+                    <a class="btn btn-default" href="~/Home/ProductDetail/@prod.Id">SE MERE</a>
+                }
+            </div>*@
+            @*<div class="col-md-4 text-center">
+        <img src="~/Content/images/1.png"/>
+        <span>
+            <p>23 <i class="fa fa-comment-o"></i>
+            </p></span>
+        <h4><b>Håndværke</b>r</h4>
+        <p>Lorem Ipsum har ikke alene overlevet fem århundreder, men har også vundet indpas i elektronisk typografi uden væsentlige ændringer.</p>
+        <a class="btn btn-default" href="#">SE MERE</a>
+    </div>*@
+            @*<div class="col-md-4 text-center">
+                <img src="~/Content/images/2.png"/>
+                <span>
+                    <p>23 <i class="fa fa-comment-o"></i>
+                    </p></span>
+                <h4><b>Majs Stykker</b>r</h4>
+                <p>Lorem Ipsum har ikke alene overlevet fem århundreder, men har også vundet indpas i elektronisk typografi uden væsentlige ændringer.</p>
+                <a class="btn btn-default" href="#">SE MERE</a>
+            </div>
+
+            <div class="col-md-4 text-center">
+                <img src="~/Content/images/1.png"/>
+                <span>
+                    <p>23 <i class="fa fa-comment-o"></i>
+                    </p></span>
+                <h4><b>Håndværke</b>r</h4>
+                <p>Lorem Ipsum har ikke alene overlevet fem århundreder, men har også vundet indpas i elektronisk typografi uden væsentlige ændringer.</p>
+                <a class="btn btn-default" href="#">SE MERE</a>
+            </div>
+            <div class="col-md-4 text-center">
+                <img src="~/Content/images/1.png"/>
+                <span>
+                    <p>23 <i class="fa fa-comment-o"></i>
+                    </p></span>
+                <h4><b>Håndværke</b>r</h4>
+                <p>Lorem Ipsum har ikke alene overlevet fem århundreder, men har også vundet indpas i elektronisk typografi uden væsentlige ændringer.</p>
+                <a class="btn btn-default" href="#">SE MERE</a>
+            </div>
+            <div class="col-md-4 text-center">
+                <img src="~/Content/images/1.png"/>
+                <span>
+                    <p>23 <i class="fa fa-comment-o"></i>
+                    </p></span>
+                <h4><b>Håndværke</b>r</h4>
+                <p>Lorem Ipsum har ikke alene overlevet fem århundreder, men har også vundet indpas i elektronisk typografi uden væsentlige ændringer.</p>
+                <a class="btn btn-defult" href="#">SE MERE</a>
+            </div>
+
+        </div>
+    </div>
+</div>*@

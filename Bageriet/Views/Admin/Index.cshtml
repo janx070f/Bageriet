@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Backend/_Layout.cshtml";
+}
+
+<div id="page-content">
+    <div class="content-header">
+        <div class="header-section">
+            <h1>
+                <i class="fa fa-dashboard"></i>Dashboard <br><small> Administrationspanelet </small>
+            </h1>
+        </div>
+    </div>
+
+    <div class="block block-alt-noborder" style="min-height: 300px">
+        <h3 class="sub-header">Dashboard <small>Her kan du administrere dit site</small></h3>
+
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <div class="panel panel-default">
+                    @*<div class="panel-heading text-center ">
+                            <h3> <strong>Dashboard</strong></h3>
+                        </div>*@
+                    <div class="panel-body col-md-6">
+
+                        <p>
+                            Her på dette dashboard kan du admininistrere din side.
+                            Øverst i venstre hjørne er der 2 knapper, en menu <i class="fa fa-bars"></i> og en logout <i class="fa fa-power-off"></i>.
+                            bag menuen gemmer der sig det mere administrative Som f.eks brugere og hvilke roller de brugere skal have.
+                            Ligesom der også ligger en mulighed for at sende et nyhedsbrev ud til dem der er på listen, 
+                            den kan også bruges til at sende mail til enkelte brugere.
+                        </p>
+                    </div>
+                    <div class="panel-body col-md-6">
+                        <p>
+                            Knapperne herover er mere side bestemt, f.eks Kontakt er en liste af det brugerne har skrevet i kontaktformularen,
+                            og about er en fortælling om virksomheden.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

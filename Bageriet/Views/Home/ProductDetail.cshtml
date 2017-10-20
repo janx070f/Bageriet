@@ -1,0 +1,189 @@
+﻿@using Bageriet.Models
+@using Microsoft.AspNet.Identity
+@model Bageriet.Models.Product
+@{
+    ViewBag.Title = "ProductDetail";
+    Layout = "~/Views/Shared/Frontend/_Layout.cshtml";
+}
+<link href="~/Content/shop-homepage.css" rel="stylesheet" />
+<link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+<div class="menu"></div>
+
+<div class="row">
+    <div class="col-md-9 col-md-push-2">
+        <ul class="breadcrumb breadcrumb-top">
+            <li> <a href="@Url.Action("Product", "Home")">Produkter</a></li>
+            <li>@Model.Title</li>
+        </ul>
+    </div>
+        <div class="col-md-6 col-md-push-2">
+
+            <h1>@Model.Title</h1>
+            <h3>@Model.Category.Title</h3>
+            <img class="img-responsive" style="float: left" src="~/Uploads/@Model.ImageUrl" alt="@Model.Title" />
+            <p>@Model.Description</p>
+        </div>
+    <div class="col-md-4 col-md-push-3">
+    @{
+                if (User.Identity.IsAuthenticated)
+                {
+                    <div class="col-xs-2">
+                        @{
+                            if (Model.Likes.Any (x => x.UserId == User.Identity.GetUserId()))
+                            {
+                                <button class="like">Like! <i class="fa fa-heart"></i></button>
+                            }else
+                            {
+                                <button class="like">Like! <i class="fa fa-heart-o"></i></button>
+                            }
+                        }
+                        <form action="@Url.Action("AddLike", "Home")" class="like" method="post" hidden>
+                            <input type="number" name="ProductId" value="@Model.Id" />
+                            <button type="submit"></button>
+                        </form>
+                    </div>
+                            }
+                            else
+                            {
+                                <div class="col-xs-2">
+                                    <span>du skal vær logget ind for at kunne like opskriften</span>
+                                </div>
+                                        }
+    }  
+        </div>
+        <div class="col-md-4 col-md-push-3">
+        <h2>Ingredients</h2>
+        @foreach (var ing in Model.Ingredients)
+        {
+            <h4>@ing.Amount @ing.Name</h4>
+        }
+    </div>
+
+   
+</div>     
+<div class="col-md-12 text-center">
+    <hr />
+
+    <div>
+
+
+@if (User.Identity.IsAuthenticated)
+        {
+            <form action="@Url.Action("_CreateComment", "Home")" method="post">
+                <input type="number" name="ProductId" value="@Model.Id" hidden="" />
+                <div class="col-md-9 col-md-push-2 commentBox_2">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="icon-pencil"></i></span>
+                
+                            <textarea rows="0" id="Comment" name="Content" class="form-control" style="resize: none" placeholder="fortæl os hvad du synes.."></textarea>
+                    </div>
+                </div>
+                <div class="col-md-1 col-md-push-1">
+                    <div class="input-group-btn">
+                        <button type="submit" class="btn btn-default ">Giv Kommentar</button>
+                    </div>
+                </div>
+
+
+            </form>
+
+   
+            foreach (var item in Model.BlogComment)
+             {
+                 <div class="col-md-9 col-md-push-2 commentUserBox">
+                     <div class="col-md-2">
+                         
+                         
+                         @if(item.User.ImageUrl == null)
+                         {
+                         <img class="img-rounded" src="~/Uploads/user-2-icon.png" />
+                         }
+                         else
+                         {
+                         <img src="~/Uploads/Users/@item.User.ImageUrl" />
+                         }
+
+                       
+                     </div>
+                     <div class="col-md-7">
+                         <div class="col-md-12">
+                             @if (@item.User.FirstName == null)
+                             {
+                                 <h5><b>@item.User.UserName</b> </h5>
+                             }
+                             else
+                             {
+                                <h5><b>@item.User.FirstName @item.User.LastName</b> </h5>
+                             }
+                            
+                             @*@Model.Comments.UserId*@
+                             <span class="comment-date">@item.DateCreated.ToString("dd MMMM") @item.DateCreated.ToString("t") @item.DateCreated.ToString("yyyy")</span>
+                         </div>
+                         <div class="col-md-12">
+                             <h5 class="text-muted">
+                                 @item.Comment
+                                 
+                             </h5>
+                         </div>
+                     </div>
+                 </div>
+             }
+          
+            <div class="col-md-9 col-md-push-2">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Previous">
+                                <span aria-hidden="true">&lt;</span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Next">
+                                <span aria-hidden="true">&gt;</span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        }
+        else
+        {
+            <div class="col-md-9 col-md-push-2 commentUserBox">
+                <h5 class="text-muted text-center commmentLogin">Du skal logge ind for at kommenterer på opskriften</h5>
+            </div>
+
+        }
+    </div>
+</div>
+@section scripts
+{
+    <script>
+        $(".like").on("mousedown", function () {
+            if ($(this).children("i").hasClass("fa fa-heart")) {
+                $(this).children("i").removeClass("fa fa-heart").addClass("fa fa-check");
+            }
+            else {
+                $(this).children("i").removeClass("fa fa-check").addClass("fa fa-heart");
+            }
+            $("form.like button[type='submit']").trigger("click");
+        });
+        $(document).on("submit",
+            "form.like",
+            function() {
+                $.ajax({
+                    type: $(this).attr("method"),
+                    url: $(this).attr("action"),
+                    data: $(this).serialize(),
+                    dataType: "json",
+                    error: function() {
+                    },
+                    success: function() {
+                    }
+                });
+                event.preventDefault();
+            });
+    </script>
+}

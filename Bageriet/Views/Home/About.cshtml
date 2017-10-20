@@ -1,0 +1,18 @@
+﻿
+@model Bageriet.ViewModels.ContentVm
+
+<div class="row">
+    <div class="col-md-6">
+       @foreach (var about in Model.About)
+       {
+
+           <h2> @about.Title</h2>
+
+           <p>@about.Description</p>
+       }
+    </div>
+    <div class="col-md-6">
+
+        <img responsive src="~/Uploads/no-image-icon-15.png" alt="NO Image"/>
+    </div>
+</div>

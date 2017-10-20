@@ -1,0 +1,57 @@
+﻿@model Bageriet.Models.Blog
+@{
+    ViewBag.Title = "BlogCreate";
+    Layout = "~/Views/Shared/Backend/_Layout.cshtml";
+}
+
+<div id="page-content">
+    <div class="content-header">
+        <div class="header-section">
+            <h1>
+                <i class="fa fa-newspaper-o"></i>Opret Blog<br><small>Her opretter du nye blogs </small>
+            </h1>
+        </div>
+    </div>
+
+<div class="block block-alt-noborder" style="min-height: 300px">
+    <h3 class="sub-header">Opret Blogs <small>Blog / News Inidlæg</small></h3>
+
+    <form role="form" enctype="multipart/form-data" method="post" id="BlogCreate" action="/Admin/BlogCreate">
+
+        <div class="form-group">
+            <label class="control-label" for="Title">Titel</label>
+            <input type="text" class="form-control" required name="Title" placeholder="Skriv Titel">
+        </div>
+
+        <div class="form-group">
+            <label class="control-label" for="ImageUrl">Billede</label>
+            <input type="file" class="form-control" required name="file" placeholder="Tilføj Billede">
+        </div>
+
+        <div class="form-group">
+            <label class="control-label" for="Content">Beskrivelse</label>
+            <textarea class="form-control" required name="Content"> </textarea>
+        </div>
+        @*<div class="form-group">
+            <label class="control-label" for="DateCreated">Date</label>
+            <input type="date" class="form-control" required name="DateCreated" placeholder="Tilføj Dato & Tid">
+        </div>*@
+
+
+
+        <button type="submit" class="btn btn-default">Godkend</button>
+
+        <a class="btn btn-danger" href="/Admin/BlogList"><i class="fa fa-times"></i> Back </a>
+    </form>
+</div>
+    </div>
+
+@section Styles
+{
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.0/css/bootstrapValidator.min.css" rel="stylesheet" />
+}
+
+@section Scripts {
+    <script type="text/javascript" src=" http://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.4.5/js/bootstrapvalidator.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/main.js"></script>
+}

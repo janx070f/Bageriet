@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Bageriet.Models.ApplicationUser>
+@{
+    ViewBag.Title = "UserList";
+    Layout = "~/Views/Shared/Backend/_Layout.cshtml";
+}
+
+<h2>UserList</h2>
+
+<form method="post" action="#">
+    <div class="form-group">
+        <label class="control-label" for="Users">Brugernavn</label>
+        <select name="Id" id="Users" class="form-control"><option hidden>Vælg Bruger</option>
+            @foreach (var user in Model)
+            {
+                <option value="@user.Id">@user.UserName</option>
+            }
+        </select>
+    </div>
+    <button type="submit" class="btn btn-success">Få brugerens Roller</button>
+
+    @if (ViewBag.RolesForThisUser != null)
+    {
+        <div>
+            <h3>Roller for denne bruger</h3>
+            <ol>
+                @foreach (var item in ViewBag.RolesForThisUser)
+                {
+                    <li>@item.Id</li>
+                }
+            </ol>
+        </div>
+    }
+</form>

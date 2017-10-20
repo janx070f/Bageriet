@@ -1,0 +1,45 @@
+﻿@model Bageriet.Models.Slider
+@{
+    ViewBag.Title = "SliderCreate";
+    Layout = "~/Views/Shared/Backend/_Layout.cshtml";
+}
+
+
+<div id="page-content">
+    <div class="content-header">
+        <div class="header-section">
+            <h1>
+                <i class="fa fa-sliders"></i>Opret Blog<br><small>Her opretter du slider </small>
+            </h1>
+        </div>
+    </div>
+
+<div class="block block-alt-noborder" style="min-height: 300px">
+    <h3 class="sub-header">Opret Slider <small>Slider Billeder</small></h3>
+
+    <form role="form" enctype="multipart/form-data" method="post" id="BlogCreate" action="/Admin/SliderCreate">
+
+        
+        <div class="form-group">
+            <label class="control-label" for="ImageUrl">Billede</label>
+            <input type="file" class="form-control" required name="file" placeholder="Tilføj Billede">
+        </div>
+
+       
+
+        <button type="submit" class="btn btn-default">Godkend</button>
+
+        <a class="btn btn-danger" href="@Url.Action("SliderList", "Admin")"><i class="fa fa-times"></i> Back </a>
+    </form>
+</div>
+    </div>
+
+@section Styles
+{
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.0/css/bootstrapValidator.min.css" rel="stylesheet" />
+}
+
+@section Scripts {
+    <script type="text/javascript" src=" http://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.4.5/js/bootstrapvalidator.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/main.js"></script>
+}

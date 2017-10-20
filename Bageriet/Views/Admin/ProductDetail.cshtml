@@ -1,0 +1,56 @@
+﻿@using Bageriet.ViewModels
+@model Bageriet.ViewModels.IngredientsVM
+
+@{
+    ViewBag.Title = "ProductDetail";
+     Layout = "~/Views/Shared/Backend/_Layout.cshtml";
+}
+
+
+<div id="page-content">
+    <div class="content-header">
+        <div class="header-section">
+            <h1>
+                <i class="fa fa-ajust"></i>Produkt Detail<br><small>Her tilføjes ingredienser til produkter </small>
+            </h1>
+        </div>
+    </div>
+
+    <div class="block block-alt-noborder" style="min-height: 300px">
+        <h3 class="sub-header">Ingredients <small>Nye ingredienser kan tilføjes </small></h3>
+        <form action="/Admin/_AddIngredients" method="post" class="form-horizontal form-bordered" id="">
+                  
+      
+                        <input type="hidden" name="ProductId" value="@Model.Product.Id" />
+
+                        <div class="form-group">
+                            <label class="col-md-3 control-label" for="Name">Name</label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" name="Name" placeholder="Add Name" required="">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-3 control-label" for="Amount">Amount</label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" name="Amount" placeholder="Add Amount" required="">
+                            </div>
+                        </div>
+                    
+                    
+                        <div class="form-group">
+                            <div class="col-md-11">
+                                 <button type="submit" class="btn btn-default">Godkend</button>
+                            </div>
+                        </div>
+          
+                    </form>
+      @foreach (var ing in Model.Product.Ingredients)
+      {
+          <ul>
+              <li>@ing.Name - @ing.Amount</li>
+          </ul>
+      }
+
+    </div>
+</div>

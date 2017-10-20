@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @RenderSection("Styles", false)
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.9/sweetalert2.min.css" />
+    <link href="https://fonts.googleapis.com/css?family=Lobster1.4|Open+Sans" rel="stylesheet">
+    @*<link href="~/Content/styles/css/Search.css" rel="stylesheet" />*@
+</head>
+<body>
+<div class="container">
+
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+
+            <div class="brand-centered">
+                <a class="navbar-brand" href="@Url.Action("Index", "Admin")">
+                    <img style="margin-right: 10px; padding: 0;" src="~/Uploads/Logo.png" alt="Logo">
+                </a>
+            </div>
+
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-left text-uppercase">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Produkter", "Product", "Home")</li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right text-uppercase">
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Login", "Login", "Home")</li>
+                    
+                    <li><a href="@Url.Action("Search", "Home")"><i class="fa fa-search"></i></a></li>
+                </ul>   
+             
+                @*<form id="content">
+                    <input type="text" name="input" class="input">
+                    <button type="reset" class="search"></button>
+                </form>*@
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+        <!--/.container-fluid -->
+    </nav>
+   
+
+</div>
+
+
+<div>
+    @RenderBody()
+    <hr />
+    <footer>
+        <div class="row">
+            <div class="col-md-12 text-center ftop">
+                <a class="btn btn-default text-center" href="#top"><i class="fa fa-chevron-up fa-2x"></i></a>
+                <h1>bageriet</h1>
+                <h5>Lorem Ipsum har ikke alene overlevet fem århundreder, men har også vundet indpas i elektronisk typografi </h5>
+            </div>
+            <div class="col-md-12 text-center fbottom">
+                    
+                <h5>Copyright &copy; 2017  bageriet aps</h5>
+            </div>
+                
+        </div>
+    </footer>
+</div>
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@RenderSection("scripts", required: false)
+<script src="http://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.9/sweetalert2.common.min.js"></script>
+
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.4.5/js/bootstrapvalidator.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+﻿
+@model IEnumerable<Bageriet.Models.About>
+@{
+    ViewBag.Title = "AboutList";
+    Layout = "~/Views/Shared/Backend/_Layout.cshtml";
+}
+
+
+
+<div id="page-content">
+    <div class="content-header">
+        <div class="header-section">
+            <h1>
+                <i class="fa fa-address-book-o"></i>About <br><small> Oplysninger om os </small>
+            </h1>
+        </div>
+    </div>
+
+<div class="block block-alt-noborder" style="min-height: 300px">
+    <h3 class="sub-header">About <small>Om vores virksomhed, mere kan tilføjes</small></h3>
+
+    <a href="/Admin/AboutCreate" class="btn btn-info New"><i class=" fa fa-plus"></i> Tilføj Ny </a>
+    <br />
+
+    <hr />
+    <table class="table table-striped">
+
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th>Beskrivelse</th>
+            <th>Settings</th>
+        </tr>
+        </thead>
+
+
+        @foreach (var about in Model)
+        {
+
+            <tbody>
+            <tr>
+                <td class="col-md-2">@about.Title</td>
+                <td class="col-md-10">@about.Description</td>
+                <td>
+                    <a class="btn btn-danger" href="/Admin/AboutDelete/@about.Id"><i class="fa fa-trash"></i></a>
+
+                    <a class="btn btn-info" href="/Admin/AboutEdit/@about.Id">
+                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        }
+    </table>
+
+</div>
+    </div>
+
